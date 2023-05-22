@@ -1,0 +1,20 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="name">Genre:</label>
+    <input type="text" id="name" class="form-control" name="name" value="<%=
+    typeof genre !== "undefined" ? genre.name : "" %>"
+    placeholder="Fiction,Adventure, etc."/>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    <% if (typeof errors !== "undefined" && errors.length > 0) { %>
+    <ul>
+      <% errors.forEach((err) => { %>
+      <li><%= err.message %></li>
+
+      <% }) %>
+    </ul>
+    <% } %>
+  </div>
+</form>
