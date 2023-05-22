@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const expressLayouts = require('express-ejs-layouts');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,15 +24,19 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+// Require static assets from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // view engine setup
+app.use(expressLayouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', './layouts/layout');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
