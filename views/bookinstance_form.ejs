@@ -1,0 +1,60 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="book">Book:</label>
+    <select
+      name="book"
+      placeholder="Select book"
+      type="select"
+      id="book"
+      class="form-control"
+      required="true"
+      >
+      <% console.log("select") %>
+      <% book_list.sort(function (a, b) { %>
+      <% let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); %>
+      <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+
+      <% book_list.forEach((book) => { %>
+        <option 
+          value="<%= book._id %>" 
+          selected="<%= typeof selected_book !== "undefined" && selected_book===book._id.toString() ? "selected" : false %>"
+        >
+            <%= book.title %>
+        </option>
+      <% }) %>
+    </select>
+
+    <div class="form-group">
+        <label for="imprint">Imprint:</label>
+        <input placeholder="Publisher and date information" type="text" id="imprint" class="form-control"  name="imprint" required="true" value="<%= typeof bookinstance === "undefined" ? "" : bookinstance.imprint %>">
+    </div>
+
+    <div class="form-group">
+        <label for="due_back">Date when book is available:</label>
+        <input type="date" id="due_back" class="form-control" name="due_back" value="<%= typeof bookinstance === "undefined" ? "" : bookinstance.due_back%>">
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <select name="status" id="status" class="form-control" type="select" placeholder="Select status" required="true">
+            <option value="Maintenance">Maintenance</option>
+            <option value="Available">Available</option>
+            <option value="Loaned">Loaned</option>
+            <option value="Reserved">Reserved</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+  <% if (typeof errors !== "undefined" && errors.length > 0) { %>
+  <ul>
+    <% errors.forEach((err) => { %>
+    <li><%= err.message %></li>
+
+    <% }) %>
+  </ul>
+  <% } %>
+</form>
