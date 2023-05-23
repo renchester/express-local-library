@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
 }
 
-a {
-  color: #00B7FF;
+.col-sm-10 {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 1.65rem;
+  font-weight: 600;
 }
