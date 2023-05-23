@@ -4,21 +4,25 @@
   <div class="form-group">
     <label for="first_name">First Name:</label>
     <input type="text" id="first_name" class="form-control" name="first_name"
-    required="true" value="<% typeof author === "undefined" ? "" :
+    required="true" value="<%= typeof author === "undefined" ? "" :
     author.first_name %>" placeholder="First name" />
+  </div>
+  <div class="form-group">
     <label for="family_name">Family Name:</label>
     <input type="text" id="family_name" class="form-control" name="family_name"
-    required="true" value="<% typeof author === "undefined" ? "" :
+    required="true" value="<%= typeof author === "undefined" ? "" :
     author.family_name %>" placeholder="Family name" />
   </div>
   <div class="form-group">
     <label for="date_of_birth">Date of birth:</label>
-    <input type="date" id="date_of_birth" class="form-control" value="<% typeof
-    author === "undefined" ? "" : author.date_of_birth %>"
+    <input type="date" id="date_of_birth" class="form-control" value="<%= typeof
+    author === "undefined" ? "" : author.date_of_birth_formatted %>"
     placeholder="dd/mm/yyyy"/>
+  </div>
+  <div class="form-group">
     <label for="date_of_death">Date of death:</label>
-    <input type="date" id="date_of_death" class="form-control" value="<% typeof
-    author === "undefined" ? "" : author.date_of_death %>"
+    <input type="date" id="date_of_death" class="form-control" value="<%= typeof
+    author === "undefined" ? "" : author.date_of_death_formatted %>"
     placeholder="dd/mm/yyyy"/>
   </div>
 
@@ -28,7 +32,6 @@
   <ul>
     <% errors.forEach((err) => { %>
     <li><%= err.message %></li>
-
     <% }) %>
   </ul>
   <% } %>
