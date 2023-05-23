@@ -1,8 +1,8 @@
-<h1>Title <%= book.title %></h1>
+<h1>Title: <%= book.title %></h1>
 
 <p>
   <strong>Author:</strong>
-  <a href="<% book.author.url %>"> <%= book.author.name %> </a>
+  <a href="<%= book.author.url %>"> <%= book.author.name %> </a>
 </p>
 <p>
   <strong>Summary:</strong>
@@ -17,7 +17,7 @@
 
   <% book.genre.forEach((val, index) => { %>
 
-  <a href="<% val.url %>"> <%= val.name %></a>
+  <a href="<%= val.url %>"> <%= val.name %></a>
 
   <% if (index < book.genre.length) { %>,<% }}) %>
 </p>
@@ -41,10 +41,13 @@
   <p><strong> Due back: </strong> <%= val.due_back_formatted %></p>
   <% } %>
 
-  <p><strong>Id:</strong> <a href="<% val.url %>"> <%= val._id %> </a></p>
+  <p><strong>Id:</strong> <a href="<%= val.url %>"> <%= val._id %> </a></p>
 
   <% }) } else { %>
 
   <p>There are no copies of this book in the library.</p>
   <% } %>
 </div>
+
+<hr />
+<p><a href="<%= book.url + '/delete' %>">Delete book</a></p>
