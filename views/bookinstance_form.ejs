@@ -1,30 +1,30 @@
 <h1><%= title %></h1>
 
 <form action="" method="POST">
-  <div class="form-group">
-    <label for="book">Book:</label>
-    <select
-      name="book"
-      placeholder="Select book"
-      type="select"
-      id="book"
-      class="form-control"
-      required="true"
-      >
-      <% console.log("select") %>
-      <% book_list.sort(function (a, b) { %>
-      <% let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); %>
-      <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
+    <div class="form-group">
+        <label for="book">Book:</label>
+        <select
+          name="book"
+          placeholder="Select book"
+          type="select"
+          id="book"
+          class="form-control"
+          required="true"
+          >
+          <% book_list.sort(function (a, b) { %>
+          <% let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); %>
+          <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}); %>
 
-      <% book_list.forEach((book) => { %>
-        <option 
-          value="<%= book._id %>" 
-          selected="<%= typeof selected_book !== "undefined" && selected_book===book._id.toString() ? "selected" : false %>"
-        >
-            <%= book.title %>
-        </option>
-      <% }) %>
-    </select>
+          <% book_list.forEach((book) => { %>
+            <option 
+              value="<%= book._id %>" 
+              selected="<%= typeof selected_book !== "undefined" && selected_book===book._id.toString() ? "selected" : false %>"
+            >
+                <%= book.title %>
+            </option>
+          <% }) %>
+        </select>
+    </div>
 
     <div class="form-group">
         <label for="imprint">Imprint:</label>
@@ -33,7 +33,7 @@
 
     <div class="form-group">
         <label for="due_back">Date when book is available:</label>
-        <input type="date" id="due_back" class="form-control" name="due_back" value="<%= typeof bookinstance === "undefined" ? "" : bookinstance.due_back%>">
+        <input type="date" id="due_back" class="form-control" name="due_back" value="<%= typeof bookinstance === "undefined" ? "" : bookinstance.due_back_formatted_input%>">
     </div>
 
     <div class="form-group">
@@ -47,7 +47,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
 
   <% if (typeof errors !== "undefined" && errors.length > 0) { %>
   <ul>
