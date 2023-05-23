@@ -1,0 +1,28 @@
+<h1><%= title %>: <%= bookinstance.name %></h1>
+
+<p>
+  Do you really want to delete this copy of
+  <a href="<%= bookinstance.book.url %>"><%= bookinstance.book.title %></a>?
+</p>
+
+<dl>
+  <dt>Imprint:</dt>
+  <dd><%= bookinstance.imprint %></dd>
+  <dt>ID:</dt>
+  <dd><%= bookinstance._id %></dd>
+</dl>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <input
+      id="bookid"
+      class="form-control"
+      type="hidden"
+      name="bookid"
+      required="true"
+      value="<%=bookinstance._id%>"
+    />
+
+    <button class="btn btn-primary" type="submit">Delete</button>
+  </div>
+</form>
